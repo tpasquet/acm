@@ -15,24 +15,18 @@ export class SyncEngine {
   ) {}
 
   async sync(profile: ResolvedProfile, opts?: SyncOpts): Promise<SyncResult[]> {
-    const sourcePath = await this.source.fetch()
-    const resolved: ResolvedProfile = { ...profile, sourcePath }
-
     return Promise.all(
       this.targets
         .filter((t) => t.detect())
-        .map((t) => t.sync(resolved, opts)),
+        .map((t) => t.sync(profile, opts)),
     )
   }
 
   async diff(profile: ResolvedProfile): Promise<{ target: string; diffs: DiffEntry[] }[]> {
-    const sourcePath = await this.source.fetch()
-    const resolved: ResolvedProfile = { ...profile, sourcePath }
-
     return Promise.all(
       this.targets
         .filter((t) => t.detect())
-        .map(async (t) => ({ target: t.name, diffs: await t.diff(resolved) })),
+        .map(async (t) => ({ target: t.name, diffs: await t.diff(profile) })),
     )
   }
 
