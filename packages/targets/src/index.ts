@@ -1,2 +1,1 @@
-// @acm/targets — target implementations
-export {}
+export { ClaudeCodeTarget } from './claude-code.js'
