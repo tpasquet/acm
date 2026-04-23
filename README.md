@@ -194,6 +194,36 @@ Always respond in French.
 
 ---
 
+## Compatibility
+
+### Operating systems
+
+| OS | Runtime | Dev scripts |
+|---|---|---|
+| macOS | ✔ | ✔ |
+| Linux | ✔ | ✔ |
+| Windows | ✔ | ✔ (rimraf, no Unix-only tools) |
+
+All runtime operations use Node.js cross-platform APIs (`os`, `path`, `fs`). The `~` prefix in paths is resolved via `os.homedir()` on all platforms.
+
+### Node.js
+
+Requires Node.js **18 or later** (ESM, `node:` protocol imports).
+
+### Git
+
+Requires Git installed and available in `PATH` for `git-remote` sources. `local` sources work without Git.
+
+### Claude Code
+
+Targets `~/.claude/` as installed by [Claude Code](https://claude.ai/code) on macOS, Linux, and Windows.
+
+### Windows — symlinks
+
+ACM uses file copies, not symlinks, so no elevated permissions or Developer Mode are required on Windows.
+
+---
+
 ## Monorepo packages
 
 | Package | Description |
