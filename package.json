@@ -12,10 +12,13 @@
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
-    "clean": "pnpm -r clean"
+    "clean": "pnpm -r clean",
+    "test": "pnpm -r test"
   },
   "devDependencies": {
+    "@types/node": "^22.0.0",
     "typescript": "^5.4.5",
-    "tsup": "^8.0.2"
+    "tsup": "^8.0.2",
+    "vitest": "^2.0.0"
   }
 }
