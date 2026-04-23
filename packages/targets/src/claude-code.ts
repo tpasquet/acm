@@ -15,8 +15,6 @@ import type {
 
 import { applyStrategy } from './strategies.js'
 
-const SOURCE_DIR = path.join('agents', 'claude')
-
 function resolvePath(p: string): string {
   return p.startsWith('~') ? path.join(os.homedir(), p.slice(1)) : p
 }
@@ -97,7 +95,7 @@ export class ClaudeCodeTarget implements Target {
   }
 
   async diff(profile: ResolvedProfile): Promise<DiffEntry[]> {
-    const sourceRoot = path.join(profile.sourcePath, SOURCE_DIR)
+    const sourceRoot = path.join(profile.sourcePath, profile.config.targets.claude?.sourceDir ?? 'agents/claude')
     const targetPath = getTargetPath(profile)
     const mergeConfig = getMergeConfig(profile)
 
@@ -124,7 +122,7 @@ export class ClaudeCodeTarget implements Target {
 
   async sync(profile: ResolvedProfile, opts?: SyncOpts): Promise<SyncResult> {
     try {
-      const sourceRoot = path.join(profile.sourcePath, SOURCE_DIR)
+      const sourceRoot = path.join(profile.sourcePath, profile.config.targets.claude?.sourceDir ?? 'agents/claude')
       const targetPath = getTargetPath(profile)
       const mergeConfig = getMergeConfig(profile)
       const diffs = await this.diff(profile)

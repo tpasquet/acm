@@ -18,6 +18,7 @@ function makeProfile(sourceDir: string, targetDir: string): ResolvedProfile {
         claude: {
           enabled: true,
           path: targetDir,
+          sourceDir: 'agents/claude',
           merge: {
             'CLAUDE.md': 'inject',
             'settings.json': 'overwrite',

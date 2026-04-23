@@ -21,6 +21,7 @@ export const MergeStrategySchema = z.enum(['inject', 'overwrite', 'append'])
 export const ClaudeTargetConfigSchema = z.object({
   enabled: z.boolean().default(true),
   path: z.string().default('~/.claude'),
+  sourceDir: z.string().default('agents/claude'),
   merge: z
     .object({
       'CLAUDE.md': MergeStrategySchema.default('inject'),
