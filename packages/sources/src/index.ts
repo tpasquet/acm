@@ -1,2 +1,2 @@
-// @acm/sources — context source implementations
-export {}
+export { GitRemoteSource } from './git-remote.js'
+export { LocalSource } from './local.js'
