@@ -131,6 +131,46 @@ ACM controls how each file is deployed, per target:
 | `overwrite` | Replaces the entire file | `settings.json`, `commands/` |
 | `append` | Appends content at the end of the file | — |
 
+#### `inject`
+
+Content outside the markers belongs to you and is never touched by ACM.
+
+```markdown
+# My personal notes        ← untouched by ACM
+I like short answers.
+
+<!-- acm:start -->
+@context/memory.md         ← managed by ACM
+@context/instructions.md
+<!-- acm:end -->
+
+## Project-specific notes  ← untouched by ACM
+See internal/README.md
+```
+
+If the markers don't exist yet, ACM appends the block at the end of the file on first sync.
+
+#### `overwrite`
+
+The entire file is replaced with the version from your context repo.
+
+```diff
+- { "model": "claude-sonnet-4-6", "theme": "light" }   ← previous local content
++ { "model": "claude-opus-4-7", "theme": "dark" }       ← from context repo
+```
+
+#### `append`
+
+Content from your context repo is appended at the end of the existing file without touching what's already there.
+
+```markdown
+# Existing local content
+
+---
+[appended from context repo]
+Always respond in French.
+```
+
 ### Warnings
 
 **`overwrite` is destructive.** When ACM overwrites a file (e.g. `settings.json`), the previous content is gone — there is no backup. Before enabling `overwrite`, make sure everything you want to keep is already in your context repo.
