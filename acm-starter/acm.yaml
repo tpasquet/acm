@@ -1,0 +1,4 @@
+# ACM context repo manifest
+# This file identifies the repo as an ACM context repository.
+name: my-acm-context
+version: "1"
