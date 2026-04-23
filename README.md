@@ -131,6 +131,16 @@ ACM controls how each file is deployed, per target:
 | `overwrite` | Replaces the entire file | `settings.json`, `commands/` |
 | `append` | Appends content at the end of the file | — |
 
+### Warnings
+
+**`overwrite` is destructive.** When ACM overwrites a file (e.g. `settings.json`), the previous content is gone — there is no backup. Before enabling `overwrite`, make sure everything you want to keep is already in your context repo.
+
+**Don't edit content inside `inject` markers.** The block between `<!-- acm:start -->` and `<!-- acm:end -->` in `CLAUDE.md` is fully managed by ACM and will be replaced on every sync. Add your personal notes outside the markers.
+
+**ACM has no backup mechanism.** Your context repo is the source of truth. If you want to preserve local state, commit it to the repo before running `acm sync`.
+
+> **Tip:** Always use `acm diff` or `acm sync --dry-run` before syncing on a new machine to preview what will change.
+
 ---
 
 ## Supported targets

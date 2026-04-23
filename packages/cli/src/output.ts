@@ -24,7 +24,7 @@ export function printSyncResults(results: SyncResult[]): void {
       console.log(chalk.dim('  (nothing to sync)'))
     }
     for (const diff of result.diffs) {
-      console.log(`  ${actionIcon(diff.action)} ${diff.file}`)
+      console.log(`  ${actionIcon(diff.action)} ${diff.file}${overwriteWarning(diff)}`)
     }
   }
 }
@@ -36,7 +36,14 @@ export function printDiffResults(groups: { target: string; diffs: DiffEntry[] }[
       console.log(chalk.dim('  (nothing to sync)'))
     }
     for (const diff of diffs) {
-      console.log(`  ${actionIcon(diff.action)} ${diff.file}`)
+      console.log(`  ${actionIcon(diff.action)} ${diff.file}${overwriteWarning(diff)}`)
     }
   }
+}
+
+function overwriteWarning(diff: DiffEntry): string {
+  if (diff.action === 'update' && diff.strategy === 'overwrite') {
+    return chalk.yellow('  ⚠ existing content will be replaced')
+  }
+  return ''
 }
