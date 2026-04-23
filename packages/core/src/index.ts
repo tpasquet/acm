@@ -1,2 +1,3 @@
-// @acm/core — types, schemas, and engine interfaces
-export {}
+export * from './schemas.js'
+export * from './interfaces.js'
+export { SyncEngine } from './engine.js'
