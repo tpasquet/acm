@@ -27,6 +27,13 @@ function readFile(filePath: string): string | null {
   }
 }
 
+function walkDir(dir: string): string[] {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = path.join(dir, entry.name)
+    return entry.isDirectory() ? walkDir(full) : [full]
+  })
+}
+
 function getMergeConfig(profile: ResolvedProfile): ClaudeTargetConfig['merge'] {
   return (
     profile.config.targets.claude?.merge ?? {
@@ -72,6 +79,23 @@ function computeCommandsDiffs(
   })
 }
 
+function computeContextDiffs(sourceContextDir: string, targetContextDir: string): DiffEntry[] {
+  if (!fs.existsSync(sourceContextDir)) return []
+
+  return walkDir(sourceContextDir).map((file) => {
+    const relative = path.relative(sourceContextDir, file)
+    const targetFile = path.join(targetContextDir, relative)
+    const sourceContent = fs.readFileSync(file, 'utf-8')
+    const existing = readFile(targetFile)
+    const action = existing === null ? 'create' : sourceContent === existing ? 'skip' : 'update'
+    return {
+      file: path.join('context', relative),
+      action,
+      strategy: 'overwrite' as const,
+    }
+  })
+}
+
 function applyDiff(
   targetFile: string,
   sourceContent: string,
@@ -95,7 +119,10 @@ export class ClaudeCodeTarget implements Target {
   }
 
   async diff(profile: ResolvedProfile): Promise<DiffEntry[]> {
-    const sourceRoot = path.join(profile.sourcePath, profile.config.targets.claude?.sourceDir ?? 'agents/claude')
+    const sourceRoot = path.join(
+      profile.sourcePath,
+      profile.config.targets.claude?.sourceDir ?? 'agents/claude',
+    )
     const targetPath = getTargetPath(profile)
     const mergeConfig = getMergeConfig(profile)
 
@@ -117,12 +144,20 @@ export class ClaudeCodeTarget implements Target {
       mergeConfig['commands/'],
     )
 
-    return [...fileDiffs, ...commandsDiffs]
+    const contextDiffs = computeContextDiffs(
+      path.join(profile.sourcePath, 'context'),
+      path.join(targetPath, 'context'),
+    )
+
+    return [...fileDiffs, ...commandsDiffs, ...contextDiffs]
   }
 
   async sync(profile: ResolvedProfile, opts?: SyncOpts): Promise<SyncResult> {
     try {
-      const sourceRoot = path.join(profile.sourcePath, profile.config.targets.claude?.sourceDir ?? 'agents/claude')
+      const sourceRoot = path.join(
+        profile.sourcePath,
+        profile.config.targets.claude?.sourceDir ?? 'agents/claude',
+      )
       const targetPath = getTargetPath(profile)
       const mergeConfig = getMergeConfig(profile)
       const diffs = await this.diff(profile)
@@ -154,6 +189,20 @@ export class ClaudeCodeTarget implements Target {
           const diff = diffs.find((d) => d.file === name)
           if (diff) {
             applyDiff(path.join(targetCommandsDir, name), sourceContent, commandsStrategy, diff)
+          }
+        }
+      }
+
+      const sourceContextDir = path.join(profile.sourcePath, 'context')
+      const targetContextDir = path.join(targetPath, 'context')
+
+      if (fs.existsSync(sourceContextDir)) {
+        for (const file of walkDir(sourceContextDir)) {
+          const relative = path.relative(sourceContextDir, file)
+          const sourceContent = fs.readFileSync(file, 'utf-8')
+          const diff = diffs.find((d) => d.file === path.join('context', relative))
+          if (diff) {
+            applyDiff(path.join(targetContextDir, relative), sourceContent, 'overwrite', diff)
           }
         }
       }

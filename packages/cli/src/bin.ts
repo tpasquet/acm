@@ -39,6 +39,11 @@ program
   .description('Show active profile and target install status')
   .action(statusCommand)
 
+program
+  .command('use <name>')
+  .description('Switch active profile and sync (shorthand for profile use)')
+  .action((name: string) => profileUseCommand(name))
+
 const profileCmd = program.command('profile').description('Manage profiles')
 
 profileCmd
