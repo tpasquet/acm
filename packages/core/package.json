@@ -1,6 +1,6 @@
 {
   "name": "@acm/core",
-  "version": "0.1.0",
+  "version": "0.0.1-alpha.0",
   "description": "ACM core types, schemas, and engine interfaces",
   "type": "module",
   "main": "./dist/index.js",
