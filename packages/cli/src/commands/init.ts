@@ -47,7 +47,7 @@ export async function initCommand(): Promise<void> {
     profiles: {
       [base.profileName as string]: {
         source,
-        targets: { claude: { enabled: true, path: '~/.claude', merge: { 'CLAUDE.md': 'inject', 'settings.json': 'overwrite', 'commands/': 'overwrite' } } },
+        targets: { claude: { enabled: true, path: '~/.claude', sourceDir: 'agents/claude', merge: { 'CLAUDE.md': 'inject', 'settings.json': 'overwrite', 'commands/': 'overwrite' } } },
       },
     },
   }
