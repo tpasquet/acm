@@ -24,9 +24,9 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test
-      - run: pnpm build
 
   cross-platform:
     name: Build (${{ matrix.os }})
@@ -45,5 +45,5 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm test
       - run: pnpm build
+      - run: pnpm test
