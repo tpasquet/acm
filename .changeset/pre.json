@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@acmjs/cli": "0.0.1-alpha.0",
+    "@acmjs/core": "0.0.1-alpha.0",
+    "@acmjs/sources": "0.0.1-alpha.0",
+    "@acmjs/targets": "0.0.1-alpha.0"
+  },
+  "changesets": []
+}
