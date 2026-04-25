@@ -7,5 +7,7 @@
     "@acmjs/sources": "0.0.1-alpha.0",
     "@acmjs/targets": "0.0.1-alpha.0"
   },
-  "changesets": []
+  "changesets": [
+    "wet-swans-raise"
+  ]
 }
