@@ -2,6 +2,7 @@
   "name": "@acmjs/cli",
   "version": "0.0.1-alpha.0",
   "description": "ACM command-line interface",
+  "keywords": ["ai", "context", "claude", "claude-code", "cli", "sync", "dotfiles", "ai-context", "llm"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
