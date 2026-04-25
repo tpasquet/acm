@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 
-import type { ContextSource, LocalSource as LocalSourceConfig } from '@acm/core'
+import type { ContextSource, LocalSource as LocalSourceConfig } from '@acmjs/core'
 
 export class LocalSource implements ContextSource {
   private readonly resolvedPath: string

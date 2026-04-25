@@ -1,5 +1,5 @@
 {
-  "name": "@acm/targets",
+  "name": "@acmjs/targets",
   "version": "0.0.1-alpha.0",
   "description": "ACM target implementations (Claude Code, ...)",
   "type": "module",
@@ -19,7 +19,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@acm/core": "workspace:*"
+    "@acmjs/core": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.4.5",

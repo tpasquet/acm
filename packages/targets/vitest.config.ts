@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   resolve: {
     alias: {
-      '@acm/core': path.resolve(__dirname, '../core/src/index.ts'),
+      '@acmjs/core': path.resolve(__dirname, '../core/src/index.ts'),
     },
   },
   test: {

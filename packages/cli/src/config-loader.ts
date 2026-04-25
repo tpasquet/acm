@@ -4,11 +4,11 @@ import path from 'node:path'
 
 import { stringify, parse } from 'yaml'
 
-import { AcmConfigSchema, SyncEngine } from '@acm/core'
-import type { AcmConfig, Profile, ResolvedProfile, SourceConfig } from '@acm/core'
-import { GitRemoteSource, LocalSource } from '@acm/sources'
-import type { ContextSource } from '@acm/core'
-import { ClaudeCodeTarget } from '@acm/targets'
+import { AcmConfigSchema, SyncEngine } from '@acmjs/core'
+import type { AcmConfig, Profile, ResolvedProfile, SourceConfig } from '@acmjs/core'
+import { GitRemoteSource, LocalSource } from '@acmjs/sources'
+import type { ContextSource } from '@acmjs/core'
+import { ClaudeCodeTarget } from '@acmjs/targets'
 
 export const CONFIG_PATH = path.join(os.homedir(), '.acm', 'config.yaml')
 

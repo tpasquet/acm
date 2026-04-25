@@ -16,10 +16,10 @@ pnpm test
 
 ```
 packages/
-├── core/      @acm/core     — schemas, interfaces, SyncEngine (no side effects)
-├── sources/   @acm/sources  — GitRemoteSource, LocalSource
-├── targets/   @acm/targets  — ClaudeCodeTarget
-└── cli/       @acm/cli      — acm binary (Commander)
+├── core/      @acmjs/core     — schemas, interfaces, SyncEngine (no side effects)
+├── sources/   @acmjs/sources  — GitRemoteSource, LocalSource
+├── targets/   @acmjs/targets  — ClaudeCodeTarget
+└── cli/       @acmjs/cli      — acm binary (Commander)
 ```
 
 **Dependency rule:** `core` has no dependency on the other packages. `sources` and `targets` depend only on `core`. `cli` depends on all three.
@@ -36,18 +36,18 @@ pnpm clean          # delete all dist/ folders
 Per-package:
 
 ```sh
-pnpm --filter @acm/core build
-pnpm --filter @acm/targets test
+pnpm --filter @acmjs/core build
+pnpm --filter @acmjs/targets test
 ```
 
 ## Adding a new target
 
 A target deploys context files to a specific AI agent (Cursor, Copilot, etc.).
 
-1. Create `packages/targets/src/<agent>.ts` implementing the `Target` interface from `@acm/core`:
+1. Create `packages/targets/src/<agent>.ts` implementing the `Target` interface from `@acmjs/core`:
 
 ```typescript
-import type { Target, ResolvedProfile, SyncOpts, SyncResult, DiffEntry, TargetStatus } from '@acm/core'
+import type { Target, ResolvedProfile, SyncOpts, SyncResult, DiffEntry, TargetStatus } from '@acmjs/core'
 
 export class CursorTarget implements Target {
   readonly name = 'cursor'
@@ -69,10 +69,10 @@ export class CursorTarget implements Target {
 
 A source fetches the context repo to a local path.
 
-1. Create `packages/sources/src/<type>.ts` implementing the `ContextSource` interface from `@acm/core`:
+1. Create `packages/sources/src/<type>.ts` implementing the `ContextSource` interface from `@acmjs/core`:
 
 ```typescript
-import type { ContextSource } from '@acm/core'
+import type { ContextSource } from '@acmjs/core'
 
 export class GistSource implements ContextSource {
   async fetch(): Promise<string> { ... }   // returns local path
@@ -102,7 +102,7 @@ Tests live in `src/__tests__/` in each package. We use [vitest](https://vitest.d
 - Mock only external I/O that can't run in CI (network, git remotes)
 
 ```sh
-pnpm --filter @acm/targets test -- --watch   # watch mode for a package
+pnpm --filter @acmjs/targets test -- --watch   # watch mode for a package
 ```
 
 ## Pull requests

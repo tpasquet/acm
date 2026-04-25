@@ -17,7 +17,7 @@ Your context repo is the single source of truth. Switch machines, onboard teamma
 ## Installation
 
 ```sh
-npm install -g @acm/cli
+npm install -g @acmjs/cli
 ```
 
 ---
@@ -228,10 +228,10 @@ ACM uses file copies, not symlinks, so no elevated permissions or Developer Mode
 
 | Package | Description |
 |---|---|
-| [`@acm/core`](./packages/core) | Zod schemas, interfaces, sync engine |
-| [`@acm/sources`](./packages/sources) | `git-remote` and `local` source implementations |
-| [`@acm/targets`](./packages/targets) | Claude Code target implementation |
-| [`@acm/cli`](./packages/cli) | `acm` binary (Commander, Chalk, Ora) |
+| [`@acmjs/core`](./packages/core) | Zod schemas, interfaces, sync engine |
+| [`@acmjs/sources`](./packages/sources) | `git-remote` and `local` source implementations |
+| [`@acmjs/targets`](./packages/targets) | Claude Code target implementation |
+| [`@acmjs/cli`](./packages/cli) | `acm` binary (Commander, Chalk, Ora) |
 
 ---
 

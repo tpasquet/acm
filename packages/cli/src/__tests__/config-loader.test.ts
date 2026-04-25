@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { AcmConfig } from '@acm/core'
+import type { AcmConfig } from '@acmjs/core'
 
 import { getActiveProfile, resolveSource } from '../config-loader.js'
 

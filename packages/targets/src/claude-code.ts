@@ -11,7 +11,7 @@ import type {
   SyncResult,
   Target,
   TargetStatus,
-} from '@acm/core'
+} from '@acmjs/core'
 
 import { applyStrategy } from './strategies.js'
 

@@ -1,4 +1,4 @@
-import type { MergeStrategy } from '@acm/core'
+import type { MergeStrategy } from '@acmjs/core'
 
 const ACM_START = '<!-- acm:start -->'
 const ACM_END = '<!-- acm:end -->'

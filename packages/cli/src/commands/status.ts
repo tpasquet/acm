@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { ClaudeCodeTarget } from '@acm/targets'
+import { ClaudeCodeTarget } from '@acmjs/targets'
 
 import { getActiveProfile, loadConfig, resolveSource } from '../config-loader.js'
 

@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import prompts from 'prompts'
 
-import type { AcmConfig, SourceConfig } from '@acm/core'
+import type { AcmConfig, SourceConfig } from '@acmjs/core'
 import { saveConfig } from '../config-loader.js'
 
 export async function initCommand(): Promise<void> {

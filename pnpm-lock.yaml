@@ -26,13 +26,13 @@ importers:
 
   packages/cli:
     dependencies:
-      '@acm/core':
+      '@acmjs/core':
         specifier: workspace:*
         version: link:../core
-      '@acm/sources':
+      '@acmjs/sources':
         specifier: workspace:*
         version: link:../sources
-      '@acm/targets':
+      '@acmjs/targets':
         specifier: workspace:*
         version: link:../targets
       chalk:
@@ -79,7 +79,7 @@ importers:
 
   packages/sources:
     dependencies:
-      '@acm/core':
+      '@acmjs/core':
         specifier: workspace:*
         version: link:../core
       simple-git:
@@ -95,7 +95,7 @@ importers:
 
   packages/targets:
     dependencies:
-      '@acm/core':
+      '@acmjs/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:

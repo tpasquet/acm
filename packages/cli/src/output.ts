@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import type { DiffEntry, SyncResult } from '@acm/core'
+import type { DiffEntry, SyncResult } from '@acmjs/core'
 
 function actionIcon(action: DiffEntry['action']): string {
   switch (action) {

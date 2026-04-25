@@ -4,7 +4,7 @@ import path from 'node:path'
 
 import { simpleGit } from 'simple-git'
 
-import type { ContextSource, GitRemoteSource as GitRemoteSourceConfig } from '@acm/core'
+import type { ContextSource, GitRemoteSource as GitRemoteSourceConfig } from '@acmjs/core'
 
 function urlToSlug(url: string): string {
   return url

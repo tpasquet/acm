@@ -1,2 +1,2 @@
-// @acm/cli — public API re-exports
+// @acmjs/cli — public API re-exports
 export {}
