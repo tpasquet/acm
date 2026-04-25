@@ -35,6 +35,52 @@ acm sync
 acm status
 ```
 
+### First-time setup
+
+```
+$ acm init
+✔ Profile name › work
+✔ Source type › Git remote
+✔ Git remote URL › git@github.com:you/acm-context.git
+✔ Branch › main
+
+✔ Config written. Run acm sync to deploy.
+```
+
+### Syncing context
+
+```
+$ acm sync
+
+claude-code:
+  + CLAUDE.md
+  + settings.json
+  + commands/review.md
+  + commands/commit.md
+```
+
+On subsequent syncs, ACM only updates what changed:
+
+```
+$ acm sync
+
+claude-code:
+  ~ CLAUDE.md
+  · settings.json
+  · commands/review.md
+  · commands/commit.md
+```
+
+### Previewing changes
+
+```
+$ acm diff
+
+claude-code:
+  ~ CLAUDE.md   ⚠ existing content will be replaced
+  · settings.json
+```
+
 ---
 
 ## Commands
@@ -86,7 +132,16 @@ profiles:
 ```
 
 ```sh
-acm profile use perso   # switches and syncs immediately
+acm use perso   # switches and syncs immediately
+```
+
+```
+$ acm use perso
+
+claude-code:
+  ~ CLAUDE.md
+  ~ settings.json
+  + commands/standup.md
 ```
 
 ---

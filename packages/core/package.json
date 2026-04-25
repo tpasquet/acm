@@ -2,6 +2,7 @@
   "name": "@acmjs/core",
   "version": "0.0.1-alpha.0",
   "description": "ACM core types, schemas, and engine interfaces",
+  "keywords": ["ai", "context", "claude", "sync", "schemas", "ai-context", "llm"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
